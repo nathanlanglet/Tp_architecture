@@ -94,11 +94,11 @@
 					echo "<br> Pages : ";
 					}
 
-                if ($page > 2 &&  $page != $nbpages &&  $page != $nbpages-1 &&  $page != $nbpages-2)
+                if ($page > 2 &&  $page != $nbpages &&  $page != $nbpages-1 )
                     {
                     echo "<a href='commentaires.php?page=1'> Début </a>";
                     echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
-                    for($i=($page-2);$i<=$p-1;$i++)
+                    for($i=($page-2);$i<=$p-2;$i++)
 				        {
 						if ($i == $page)
 							{
@@ -128,7 +128,7 @@
                     {
                     echo "<a href='commentaires.php?page=1'> Début </a>";
 					echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
-                    for($i=($page-1);$i<=$p;$i++)
+                    for($i=($page-1);$i<=$p-1;$i++)
                         {
 						if ($i == $page)
 							{
@@ -144,7 +144,7 @@
 					{
 					echo "<a href='commentaires.php?page=1'> Début </a>";
 					echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
-						for($i=($page-5);$i<=$p;$i++)
+						for($i=($page-4);$i<=$p;$i++)
 							{
 							if ($i == $page)
 								{
@@ -160,22 +160,6 @@
 					{
 					echo "<a href='commentaires.php?page=1'> Début </a>";
 					echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
-						for($i=($page-4);$i<=$nbpages;$i++)
-							{
-							if ($i == $page)
-								{
-								echo "<a style='color:red' href='commentaires.php?page=$i'> $i </a>";
-								}
-							else
-								{
-								echo "<a href='commentaires.php?page=$i'> $i </a>";
-								}
-							}					
-					}
-				else if ($page == $nbpages-2)
-					{
-					echo "<a href='commentaires.php?page=1'> Début </a>";
-					echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
 						for($i=($page-3);$i<=$nbpages;$i++)
 							{
 							if ($i == $page)
@@ -188,6 +172,7 @@
 								}
 							}					
 					}
+
 
 				if ($nbpages > $page)
 					{
