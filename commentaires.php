@@ -75,35 +75,121 @@
 			    {
                 $nbcomm=mysqli_num_rows($res); // Retourne le nombre de lignes dans un résultat. 
 				$nbpages=ceil($nbcomm/$commparpage); /*Ceil arrondit a l'entier supérieur*/
-				echo "<br> Pages : ";
-                if ($page > 2)
+				if ($nbpages > $page)
+					{
+					$p = $page+4;
+					}
+				else
+					{
+					$p = $nbpages;
+					}
+
+				if ($nbpages > 1)
+					{
+					echo "<br> Pages : ";
+					}
+
+                if ($page > 2 &&  $page != $nbpages &&  $page != $nbpages-1 &&  $page != $nbpages-2)
                     {
                     echo "<a href='commentaires.php?page=1'> Début </a>";
                     echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
-                    for($i=($page-2);$i<=($page+2);$i++)
+                    for($i=($page-2);$i<=$p-1;$i++)
 				        {
-					echo "<a href='commentaires.php?page=$i'> $i </a>";
+						if ($i == $page)
+							{
+							echo "<a style='color:red' href='commentaires.php?page=$i'> $i </a>";
+							}
+						else
+							{
+							echo "<a href='commentaires.php?page=$i'> $i </a>";
+							}
 				        }
                     }
                 else if ($page == 1)
                     {
-                    for($i=$page;$i<=($page+4);$i++)
+                    for($i=$page;$i<=$p;$i++)
 				        {
-					    echo "<a href='commentaires.php?page=$i'> $i </a>";
-				        }
+					    if ($i == $page)
+							{
+							echo "<a style='color:red' href='commentaires.php?page=$i'> $i </a>";
+							}
+						else
+							{
+							echo "<a href='commentaires.php?page=$i'> $i </a>";
+							}
+						}
                     }
                 else if ($page == 2)
                     {
                     echo "<a href='commentaires.php?page=1'> Début </a>";
-                    echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
-                    for($i=($page-1);$i<=($page+3);$i++)
+					echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
+                    for($i=($page-1);$i<=$p;$i++)
                         {
-                        echo "<a href='commentaires.php?page=$i'> $i </a>";
-                        }
-                    }
+						if ($i == $page)
+							{
+							echo "<a style='color:red' href='commentaires.php?page=$i'> $i </a>";
+							}
+						else
+							{
+							echo "<a href='commentaires.php?page=$i'> $i </a>";
+							}
+						}
+					}
+				else if ($page == $nbpages)
+					{
+					echo "<a href='commentaires.php?page=1'> Début </a>";
+					echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
+						for($i=($page-5);$i<=$p;$i++)
+							{
+							if ($i == $page)
+								{
+								echo "<a style='color:red' href='commentaires.php?page=$i'> $i </a>";
+								}
+							else
+								{
+								echo "<a href='commentaires.php?page=$i'> $i </a>";
+								}
+							}					
+					}
+				else if ($page == $nbpages-1)
+					{
+					echo "<a href='commentaires.php?page=1'> Début </a>";
+					echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
+						for($i=($page-4);$i<=$nbpages;$i++)
+							{
+							if ($i == $page)
+								{
+								echo "<a style='color:red' href='commentaires.php?page=$i'> $i </a>";
+								}
+							else
+								{
+								echo "<a href='commentaires.php?page=$i'> $i </a>";
+								}
+							}					
+					}
+				else if ($page == $nbpages-2)
+					{
+					echo "<a href='commentaires.php?page=1'> Début </a>";
+					echo "<a href='commentaires.php?page=".($page-1)."'> Précédente </a>";
+						for($i=($page-3);$i<=$nbpages;$i++)
+							{
+							if ($i == $page)
+								{
+								echo "<a style='color:red' href='commentaires.php?page=$i'> $i </a>";
+								}
+							else
+								{
+								echo "<a href='commentaires.php?page=$i'> $i </a>";
+								}
+							}					
+					}
+
+				if ($nbpages > $page)
+					{
+					echo "<a href='commentaires.php?page=".($page+1)."'> Suivante </a>";
+					echo "<a href='commentaires.php?page=$nbpages'> Fin </a>";
+					}
 			    }
-			echo "<a href='commentaires.php?page=".($page+1)."'> Suivante </a>";
-			echo "<a href='commentaires.php?page=$nbpages'> Fin </a>";
 			
 			mysqli_close($lien);
 		?>	
