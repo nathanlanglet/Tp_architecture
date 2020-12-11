@@ -75,6 +75,11 @@
 			    {
                 $nbcomm=mysqli_num_rows($res); // Retourne le nombre de lignes dans un résultat. 
 				$nbpages=ceil($nbcomm/$commparpage); /*Ceil arrondit a l'entier supérieur*/
+				if ($page > $nbpages)
+					{
+					header('Location:commentaires.php?page='.$nbpages);
+					}
+
 				if ($nbpages > $page)
 					{
 					$p = $page+4;
